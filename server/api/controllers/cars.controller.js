@@ -4,12 +4,13 @@ import { Cars } from "../models/Cars.Model.js";
 import { ObjectId } from 'mongodb';
 
 const getCars = async (req, res, next) => {
- 
+ console.log('Entro')
   try {
     const cars = await Cars.find()
       // .populate({ path: "materialIntervencion",select: "descripcion"})
       // .populate({path:'cliente', select :""})
-    return res.status(200).json(cars);
+      console.log(cars,12)
+      return res.status(200).json(cars);
     // return res.json({
     //   //  status : 200,
     //   //  message : httpStatusCode[200],
