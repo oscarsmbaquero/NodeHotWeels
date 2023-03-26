@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema(
+const carSchema = new Schema(
   {
     marca: { type: String, required: true },    
     modelo: { type: String, required: false },
@@ -13,6 +13,6 @@ const userSchema = new Schema(
   }
 );
 
-const Cars = mongoose.model('Cars',userSchema );
+const Cars = mongoose.model('Cars',carSchema );
 
 export { Cars }
