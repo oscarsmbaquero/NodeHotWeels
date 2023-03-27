@@ -48,6 +48,8 @@ const createCars = async (req, res, next) => {
       marca: req.body.marca,
       modelo: req.body.modelo,
       imagen: req.body.imagen,
+      anio: req.body.anio,
+      tipo:req.body.tipo,
     });
     const newCarDB = await NewCar.save();
     return res.json({

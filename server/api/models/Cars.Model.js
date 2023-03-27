@@ -4,8 +4,10 @@ const Schema = mongoose.Schema;
 const carsSchema = new Schema(
   {
     marca: { type: String, required: true },    
-    modelo: { type: String, required: false },
-    image: { type: String },
+    modelo: { type: String, required: true },
+    image: { type: String, required: false },
+    tipo: { type: String, required: true },
+    anio:{ type:Number, required: true }
   },
   {
     timestamps: true,
