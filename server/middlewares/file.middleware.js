@@ -34,6 +34,7 @@ const upload = multer({
 
 // Ahora tenemos un nuevo middleware de subida de archivos
 const uploadToCloudinary = async (req, res, next) => {
+  console.log('Entro a uploadToCloudinary', req.file)
   if (req.file) {
     try {
       const filePath = req.file.path;
