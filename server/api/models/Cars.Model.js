@@ -9,6 +9,7 @@ const carsSchema = new Schema(
       data: Buffer,
       contentType: String
     },
+    favorite: { type: Boolean, required: false },
     imagenUrl: { type: String, required: false },
     tipo: { type: String, required: true },
     anio:{ type:Number, required: true }

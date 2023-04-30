@@ -64,6 +64,33 @@ const createCars = async (req, res, next) => {
     return next(error);
   }
 };
+
+
+const updateCars = async (req, res, next) => {
+  console.log(req.body)
+  try {
+    const { id } = req.params;
+    const update = req.body;
+    const options = { new: true };
+    const updatedCar = await Cars.findByIdAndUpdate(id, update, options);
+
+    if (!updatedCar) {
+      return res.status(404).json({
+        status: 404,
+        message: httpStatusCode[404],
+        error: "Car not found",
+      });
+    }
+
+    return res.status(200).json({
+      status: 200,
+      message: httpStatusCode[200],
+      data: { car: updatedCar },
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
 // const createCars = async (req, res, next) => {
 //   try {
 //     const file = req.file; // obtener el archivo de la petición
@@ -95,4 +122,4 @@ const createCars = async (req, res, next) => {
 
 
 
-export { getCars, carDetail, createCars };
+export { getCars, carDetail, createCars, updateCars };
