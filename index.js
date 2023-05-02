@@ -1,5 +1,3 @@
-
-
 //DEPENDENCIAS
 import express from "express";
 import  "dotenv/config";
@@ -10,6 +8,7 @@ import { DB_URL, connect } from "./server/config/db.js";
 
 //IMPORTACION DE RUTAS
 import { carRoutes } from './server/api/routes/cars.routes.js';
+import { userRoutes } from "./server/api/routes/users.routes.js";
 
 
 //creo servidor express
@@ -31,6 +30,7 @@ server.use(cors('*'));
 
 //RUTAS
 server.use("/cars", carRoutes);
+server.use("/users", userRoutes);
 
 
 
