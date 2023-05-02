@@ -26,32 +26,29 @@ const fileFilter = (req, file, cb) => {
   }
 }
 
-const upload = multer({
-  storage,
-  fileFilter,
-});
+// const upload = multer({
+//   storage,
+//   fileFilter,
+// });
+const upload = multer({ dest: null });
+
 
 
 // Ahora tenemos un nuevo middleware de subida de archivos
-const uploadToCloudinary = async (req, res, next) => {
-  console.log('Entro a uploadToCloudinary', req.file)
+// 
+const uploadToCloudinary = (req, res, next) => {
   if (req.file) {
-    try {
-      const filePath = req.file.path;
-      const image = await cloudinary.v2.uploader.upload(filePath);
-
-      // Borramos el archivo local
-      await fs.unlinkSync(filePath);
-
-      // Añadimos la propiedad file_url a nuestro Request
-      req.file_url = image.secure_url;
+    cloudinary.v2.uploader.upload_stream((error, result) => {
+      if (error) {
+        return next(error);
+      }
+      req.file_url = result.secure_url;
       return next();
-    } catch(error) {
-      return next(error)
-    }
+    }).end(req.file.buffer);
   } else {
     return next();
   }
 };
+
 
 export { upload, uploadToCloudinary };
