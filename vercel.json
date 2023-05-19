@@ -1,5 +1,8 @@
 {
     "version": 2,
+    "files": {
+      "sizeLimit": "10mb"
+    },
     "name": "music-album",
     "builds": [
        { "src": "index.js", "use": "@vercel/node" }
