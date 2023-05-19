@@ -30,7 +30,22 @@ const fileFilter = (req, file, cb) => {
 //   storage,
 //   fileFilter,
 // });
-const upload = multer({ dest: null });
+//const upload = multer({ dest: null });
+const upload = multer({
+  storage,
+  fileFilter,
+  limits: {
+    fileSize: 10 * 1024 * 1024 // 10 MB
+  }
+}).single('file');
+
+
+
+
+
+
+
+
 
 
 
