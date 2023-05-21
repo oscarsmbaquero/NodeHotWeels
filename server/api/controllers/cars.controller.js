@@ -6,7 +6,7 @@ import { ObjectId } from "mongodb";
 
 
 const getCars = async (req, res, next) => {
-  
+  console.log('yes')
   try {
     const cars = await Cars.find();
     // .populate({ path: "materialIntervencion",select: "descripcion"})
@@ -91,6 +91,24 @@ const updateCars = async (req, res, next) => {
     return next(error);
   }
 };
+
+const deleteCar = async(req, res, next)=>{
+  console.log('Entro');
+  try {
+    const { id } = req.params;
+   
+    const carDelete = await Cars.findByIdAndDelete(id);
+
+    
+    return res.json({
+      status: 200,
+      message: httpStatusCode[200],
+      data: { car: carDelete },
+    });
+  } catch (error) {
+    return next(error);
+  }
+}
 // const createCars = async (req, res, next) => {
 //   try {
 //     const file = req.file; // obtener el archivo de la petición
@@ -122,4 +140,4 @@ const updateCars = async (req, res, next) => {
 
 
 
-export { getCars, carDetail, createCars, updateCars };
+export { getCars, carDetail, createCars, updateCars, deleteCar };
